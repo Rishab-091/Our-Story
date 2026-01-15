@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Story – Priyanka & Rishab</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- CINEMATIC INTRO -->
+<section id="intro" class="fullscreen">
+  <div class="intro-text">
+    <h1 id="line1"></h1>
+    <h2 id="line2"></h2>
+    <button id="beginBtn" style="display:none;">Begin</button>
+  </div>
+</section>
+
+<!-- STORY SECTION -->
+<section id="story" class="hidden-section">
+  <div class="story-text">
+    <p>Priyanka, distance never broke us. Every call, every laugh, every moment mattered.</p>
+    <p>Scroll down to see the journey we’ve built together.</p>
+  </div>
+</section>
+
+<!-- DISTANCE SECTION -->
+<section id="distance" class="hidden-section">
+  <div class="distance-text">
+    <h2>Miles apart.</h2>
+    <p>But never emotionally distant.</p>
+    <div id="line">
+      <div class="dot"></div>
+    </div>
+  </div>
+</section>
+
+<!-- MEMORIES SECTION -->
+<section id="memories" class="hidden-section">
+  <div class="story-text">
+    <h2>Our Memories 🌙</h2>
+    <p>Late-night video calls, silly jokes, serious promises… every moment with you was special, Priks.</p>
+  </div>
+</section>
+
+<!-- PROMISES SECTION -->
+<section id="promises" class="hidden-section">
+  <div class="promises-list">
+    <p>✔ I choose you</p>
+    <p>✔ I communicate better</p>
+    <p>✔ I protect your peace</p>
+    <p>✔ I work for our future together</p>
+  </div>
+</section>
+
+<!-- CTA / FINAL SECTION -->
+<section id="cta" class="hidden-section">
+  <div class="cta-text">
+    <p>If you’re ever unsure… remember this:</p>
+    <button onclick="location.href='https://wa.me/917416451902'">Call Me. I’m Here 💗</button>
+  </div>
+</section>
+
+<!-- MUSIC -->
+<audio id="song" loop>
+  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_9b6b6b7e3f.mp3" type="audio/mpeg">
+</audio>
+<div class="music-btn" onclick="playMusic()">♫ Play Music</div>
+
+<script src="app.js"></script>
+</body>
+</html>
