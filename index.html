@@ -1,69 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Story – Priyanka & Rishab</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Priyanka & Rishab Anniversary</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <!-- CINEMATIC INTRO -->
-<section id="intro" class="fullscreen">
+<section id="intro">
   <div class="intro-text">
     <h1 id="line1"></h1>
     <h2 id="line2"></h2>
-    <button id="beginBtn" style="display:none;">Begin</button>
+    <button id="beginBtn">Begin</button>
   </div>
 </section>
 
 <!-- STORY SECTION -->
-<section id="story" class="hidden-section">
+<section id="story" class="hidden-section parallax" data-speed="0.3">
   <div class="story-text">
-    <p>Priyanka, distance never broke us. Every call, every laugh, every moment mattered.</p>
-    <p>Scroll down to see the journey we’ve built together.</p>
+    <p>Priyanka, every call, every laugh, every silly joke… kept us close despite the distance.</p>
+    <p>Scroll to see how far love can travel.</p>
   </div>
 </section>
 
-<!-- DISTANCE SECTION -->
-<section id="distance" class="hidden-section">
-  <div class="distance-text">
-    <h2>Miles apart.</h2>
-    <p>But never emotionally distant.</p>
-    <div id="line">
-      <div class="dot"></div>
+<!-- DISTANCE ANIMATION SECTION -->
+<section id="distance" class="hidden-section parallax" data-speed="0.5">
+  <h2>Kota → Siliguri</h2>
+  <div id="distance-map">
+    <div id="plane-container">
+      <img src="assets/plane.png" id="plane" alt="Plane">
     </div>
+    <canvas id="distance-curve"></canvas>
   </div>
+  <p>Thousands of kilometers, yet always together in heart.</p>
 </section>
 
 <!-- MEMORIES SECTION -->
-<section id="memories" class="hidden-section">
-  <div class="story-text">
-    <h2>Our Memories 🌙</h2>
-    <p>Late-night video calls, silly jokes, serious promises… every moment with you was special, Priks.</p>
-  </div>
+<section id="memories" class="hidden-section parallax" data-speed="0.2">
+  <h2>Our Memories 🌙</h2>
+  <p>Late-night calls, silly jokes, deep talks… every moment unforgettable.</p>
+  <canvas id="stars"></canvas>
 </section>
 
 <!-- PROMISES SECTION -->
 <section id="promises" class="hidden-section">
+  <h2>My Promises to You</h2>
   <div class="promises-list">
     <p>✔ I choose you</p>
-    <p>✔ I communicate better</p>
     <p>✔ I protect your peace</p>
-    <p>✔ I work for our future together</p>
+    <p>✔ I work for our future</p>
+    <p>✔ I communicate better</p>
   </div>
 </section>
 
-<!-- CTA / FINAL SECTION -->
+<!-- FIRST MEET COUNTDOWN -->
+<section id="first-meet" class="hidden-section">
+  <h2>Our First Meet ✈️</h2>
+  <div id="countdown">
+    <span id="days">0</span>d 
+    <span id="hours">0</span>h 
+    <span id="minutes">0</span>m
+  </div>
+  <p>Counting down to March, when we finally meet 💖</p>
+</section>
+
+<!-- CTA -->
 <section id="cta" class="hidden-section">
-  <div class="cta-text">
-    <p>If you’re ever unsure… remember this:</p>
-    <button onclick="location.href='https://wa.me/917416451902'">Call Me. I’m Here 💗</button>
-  </div>
+  <p>If you’re ever unsure… remember this:</p>
+  <button onclick="location.href='https://wa.me/917416451902'">Call Me 💗</button>
 </section>
 
-<!-- MUSIC -->
+<!-- HEART PARTICLES CANVAS -->
+<canvas id="hearts"></canvas>
+
+<!-- MUSIC BUTTON -->
 <audio id="song" loop>
   <source src="assets/music.mp3" type="audio/mpeg">
 </audio>
