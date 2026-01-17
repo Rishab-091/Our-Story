@@ -3,85 +3,59 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Priyanka & Rishab Anniversary</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<title>Our Story</title>
+
+<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-<!-- CINEMATIC INTRO -->
-<section id="intro">
-  <div class="intro-text">
-    <h1 id="line1"></h1>
-    <h2 id="line2"></h2>
-    <button id="beginBtn">Begin</button>
+<div id="loader">
+  <span>Loading Memories</span>
+</div>
+
+<div class="hud">
+  <button id="musicToggle">♫</button>
+</div>
+
+<canvas id="bg"></canvas>
+
+<section class="panel hero">
+  <h1>Rishab & Priyanka</h1>
+  <p class="typed"></p>
+</section>
+
+<section class="panel story">
+  <h2>The Beginning</h2>
+  <p>Some connections don’t fade. They evolve.</p>
+</section>
+
+<section class="panel timeline">
+  <h2>Our Timeline</h2>
+  <div class="cards">
+    <div class="card">First Message</div>
+    <div class="card">First Fight</div>
+    <div class="card">Distance</div>
+    <div class="card">Still Us</div>
   </div>
 </section>
 
-<!-- STORY SECTION -->
-<section id="story" class="hidden-section parallax" data-speed="0.3">
-  <div class="story-text">
-    <p>Priyanka, every call, every laugh, every silly joke… kept us close despite the distance.</p>
-    <p>Scroll to see how far love can travel.</p>
+<section class="panel gallery">
+  <h2>Memories</h2>
+  <div class="memory-grid">
+    <div></div><div></div><div></div>
   </div>
 </section>
 
-<!-- DISTANCE ANIMATION SECTION -->
-<section id="distance" class="hidden-section parallax" data-speed="0.5">
-  <h2>Kota → Siliguri</h2>
-  <div id="distance-map">
-    <div id="plane-container">
-      <img src="assets/plane.png" id="plane" alt="Plane">
-    </div>
-    <canvas id="distance-curve"></canvas>
-  </div>
-  <p>Thousands of kilometers, yet always together in heart.</p>
+<section class="panel emotion">
+  <h2>No Matter The Distance</h2>
 </section>
 
-<!-- MEMORIES SECTION -->
-<section id="memories" class="hidden-section parallax" data-speed="0.2">
-  <h2>Our Memories 🌙</h2>
-  <p>Late-night calls, silly jokes, deep talks… every moment unforgettable.</p>
-  <canvas id="stars"></canvas>
+<section class="panel end">
+  <h2>This Story Never Ends</h2>
 </section>
 
-<!-- PROMISES SECTION -->
-<section id="promises" class="hidden-section">
-  <h2>My Promises to You</h2>
-  <div class="promises-list">
-    <p>✔ I choose you</p>
-    <p>✔ I protect your peace</p>
-    <p>✔ I work for our future</p>
-    <p>✔ I communicate better</p>
-  </div>
-</section>
-
-<!-- FIRST MEET COUNTDOWN -->
-<section id="first-meet" class="hidden-section">
-  <h2>Our First Meet ✈️</h2>
-  <div id="countdown">
-    <span id="days">0</span>d 
-    <span id="hours">0</span>h 
-    <span id="minutes">0</span>m
-  </div>
-  <p>Counting down to March, when we finally meet 💖</p>
-</section>
-
-<!-- CTA -->
-<section id="cta" class="hidden-section">
-  <p>If you’re ever unsure… remember this:</p>
-  <button onclick="location.href='https://wa.me/917416451902'">Call Me 💗</button>
-</section>
-
-<!-- HEART PARTICLES CANVAS -->
-<canvas id="hearts"></canvas>
-
-<!-- MUSIC BUTTON -->
-<audio id="song" loop>
-  <source src="assets/music.mp3" type="audio/mpeg">
-</audio>
-<div class="music-btn" onclick="playMusic()">♫ Play Music</div>
-
-<script src="app.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
