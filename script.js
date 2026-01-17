@@ -1,96 +1,97 @@
-/* LOADER */
-window.onload = () => {
-  document.getElementById("loader").style.display = "none";
-};
+/* ===============================
+   GLOBAL VARIABLES
+================================ */
+const music = document.getElementById("bgMusic");
+const startBtn = document.getElementById("startBtn");
 
-/* AUTO MUSIC WITH FADE */
-const tracks = [
+const playlist = [
+  "music/photograph.mp3",
   "music/if-we-have-each-other.mp3",
-  "music/until-i-found-you.mp3",
-  "music/photograph.mp3"
+  "music/until-i-found-you.mp3"
 ];
 
-let index = 0;
-let audio = new Audio(tracks[index]);
-audio.volume = 0;
+let currentSong = 0;
+let musicStarted = false;
 
-function fadeIn() {
-  let v = 0;
-  const i = setInterval(() => {
-    if (v >= 0.6) clearInterval(i);
-    audio.volume = v;
-    v += 0.02;
-  }, 100);
+/* ===============================
+   MUSIC CONTROLS
+================================ */
+function playMusic() {
+  if (!musicStarted) {
+    music.src = playlist[currentSong];
+    music.volume = 0;
+    music.play();
+    fadeInMusic();
+    musicStarted = true;
+    startBtn.innerText = "Music Playing ❤️";
+  }
 }
 
-function fadeOut(next) {
-  const i = setInterval(() => {
-    if (audio.volume <= 0) {
-      clearInterval(i);
-      audio.src = tracks[next];
-      audio.play();
-      fadeIn();
+function fadeInMusic() {
+  let vol = 0;
+  const fade = setInterval(() => {
+    if (vol < 0.4) {
+      vol += 0.02;
+      music.volume = vol;
+    } else {
+      clearInterval(fade);
     }
-    audio.volume -= 0.02;
-  }, 100);
+  }, 150);
 }
 
-audio.addEventListener("ended", () => {
-  index = (index + 1) % tracks.length;
-  fadeOut(index);
+music.addEventListener("ended", () => {
+  currentSong = (currentSong + 1) % playlist.length;
+  music.src = playlist[currentSong];
+  music.play();
 });
 
-document.body.addEventListener("click", () => {
-  if (audio.paused) {
-    audio.play();
-    fadeIn();
-  }
-}, { once: true });
+/* ===============================
+   BUTTON CLICK
+================================ */
+startBtn.addEventListener("click", playMusic);
 
-document.getElementById("musicToggle").onclick = () => {
-  audio.paused ? audio.play() : audio.pause();
+/* ===============================
+   SCROLL REVEAL ANIMATION
+================================ */
+const sections = document.querySelectorAll(".section");
+
+const revealOnScroll = () => {
+  const triggerBottom = window.innerHeight * 0.85;
+
+  sections.forEach(section => {
+    const boxTop = section.getBoundingClientRect().top;
+
+    if (boxTop < triggerBottom) {
+      section.classList.add("show");
+    }
+  });
 };
 
-/* TYPED TEXT */
-const text = "Not just love. A universe.";
-let i = 0;
-setInterval(() => {
-  if (i < text.length) {
-    document.querySelector(".typed").innerHTML += text[i++];
-  }
-}, 120);
+window.addEventListener("scroll", revealOnScroll);
 
-/* PARTICLES */
-const canvas = document.getElementById("bg");
-const ctx = canvas.getContext("2d");
+/* ===============================
+   HEARTS FLOATING EFFECT
+================================ */
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "❤️";
 
-function resize() {
-  canvas.width = innerWidth;
-  canvas.height = innerHeight;
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = 3 + Math.random() * 3 + "s";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 6000);
 }
-resize();
-window.onresize = resize;
 
-const particles = Array.from({ length: 120 }, () => ({
-  x: Math.random() * canvas.width,
-  y: Math.random() * canvas.height,
-  r: Math.random() * 2.5,
-  dx: Math.random() - 0.5,
-  dy: Math.random() - 0.5
-}));
+setInterval(createHeart, 700);
 
-function animate() {
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  particles.forEach(p => {
-    p.x += p.dx;
-    p.y += p.dy;
-    if (p.x<0||p.x>canvas.width) p.dx*=-1;
-    if (p.y<0||p.y>canvas.height) p.dy*=-1;
-    ctx.fillStyle = "rgba(255,105,180,0.25)";
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-    ctx.fill();
-  });
-  requestAnimationFrame(animate);
-}
-animate();
+/* ===============================
+   SMOOTH PAGE LOAD
+================================ */
+window.addEventListener("load", () => {
+  document.body.classList.add("loaded");
+});
