@@ -1,77 +1,214 @@
+/* ===============================
+   RESET + ROOT
+================================ */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+:root {
+  --pink: #ff5fa2;
+  --purple: #6a5cff;
+  --dark: #0b0b0b;
+  --light: #ffffff;
+  --soft: rgba(255,255,255,0.75);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
-  background: #0e0e0e;
-  color: #fff;
+  background: radial-gradient(circle at top, #141414, #000);
+  color: var(--light);
   overflow-x: hidden;
 }
 
-/* Hero */
+/* ===============================
+   PAGE LOAD FADE
+================================ */
+body {
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+
+body.loaded {
+  opacity: 1;
+}
+
+/* ===============================
+   HERO SECTION
+================================ */
 .hero {
   height: 100vh;
-  background: linear-gradient(120deg, #ff5fa2, #6a5cff);
+  background:
+    linear-gradient(120deg, rgba(255,95,162,0.8), rgba(106,92,255,0.8)),
+    url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee") center/cover;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+  position: relative;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+}
+
+.hero * {
+  position: relative;
+  z-index: 2;
 }
 
 .hero h1 {
-  font-size: 3.5rem;
+  font-size: clamp(2.8rem, 6vw, 4rem);
   font-family: 'Playfair Display', serif;
+  letter-spacing: 2px;
+  animation: glow 3s infinite alternate;
 }
 
 .subtitle {
-  margin: 15px 0;
+  margin: 18px 0;
   font-size: 1.2rem;
+  opacity: 0.9;
 }
 
+/* Glow animation */
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px rgba(255,255,255,0.4);
+  }
+  to {
+    text-shadow: 0 0 25px rgba(255,255,255,0.9);
+  }
+}
+
+/* ===============================
+   BUTTON
+================================ */
 #startBtn {
-  padding: 12px 30px;
+  margin-top: 20px;
+  padding: 14px 36px;
   font-size: 1rem;
+  border-radius: 40px;
   border: none;
-  border-radius: 25px;
-  background: #000;
-  color: #fff;
   cursor: pointer;
-  transition: transform 0.3s;
+  background: linear-gradient(135deg, var(--dark), #222);
+  color: white;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+  transition: all 0.4s ease;
 }
 
 #startBtn:hover {
-  transform: scale(1.1);
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.6);
 }
 
-/* Sections */
+/* ===============================
+   SECTIONS
+================================ */
 .section {
-  padding: 80px 15%;
-  line-height: 1.8;
+  min-height: 70vh;
+  padding: 100px 15%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 1.2s ease;
+}
+
+.section.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .section h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
+  font-size: clamp(2rem, 4vw, 2.8rem);
   font-family: 'Playfair Display', serif;
+  margin-bottom: 25px;
 }
 
 .section p {
   font-size: 1.1rem;
-  opacity: 0.9;
+  line-height: 1.9;
+  color: var(--soft);
+  max-width: 800px;
 }
 
+/* ===============================
+   DARK SECTIONS
+================================ */
 .section.dark {
-  background: #111;
+  background: linear-gradient(180deg, #0f0f0f, #050505);
 }
 
-/* Footer */
+.section.dark::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,95,162,0.12), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(106,92,255,0.12), transparent 40%);
+  pointer-events: none;
+}
+
+/* ===============================
+   FOOTER
+================================ */
 footer {
+  padding: 40px 10px;
   text-align: center;
-  padding: 30px;
   font-size: 0.9rem;
-  opacity: 0.7;
+  opacity: 0.6;
+  background: #050505;
+}
+
+/* ===============================
+   FLOATING HEARTS
+================================ */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  font-size: 22px;
+  animation: floatUp linear forwards;
+  pointer-events: none;
+  filter: drop-shadow(0 0 6px rgba(255,95,162,0.6));
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-120vh) scale(1.6);
+    opacity: 0;
+  }
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 900px) {
+  .section {
+    padding: 80px 10%;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 2.3rem;
+  }
+
+  .section p {
+    font-size: 1rem;
+  }
 }
