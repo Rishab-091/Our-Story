@@ -40,7 +40,6 @@ audio.addEventListener("ended", () => {
   fadeOut(index);
 });
 
-/* AUTO START ON FIRST CLICK */
 document.body.addEventListener("click", () => {
   if (audio.paused) {
     audio.play();
@@ -72,10 +71,10 @@ function resize() {
 resize();
 window.onresize = resize;
 
-const particles = Array.from({ length: 100 }, () => ({
+const particles = Array.from({ length: 120 }, () => ({
   x: Math.random() * canvas.width,
   y: Math.random() * canvas.height,
-  r: Math.random() * 2,
+  r: Math.random() * 2.5,
   dx: Math.random() - 0.5,
   dy: Math.random() - 0.5
 }));
@@ -87,7 +86,7 @@ function animate() {
     p.y += p.dy;
     if (p.x<0||p.x>canvas.width) p.dx*=-1;
     if (p.y<0||p.y>canvas.height) p.dy*=-1;
-    ctx.fillStyle = "rgba(255,255,255,0.25)";
+    ctx.fillStyle = "rgba(255,105,180,0.25)";
     ctx.beginPath();
     ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
     ctx.fill();
