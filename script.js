@@ -1,8 +1,5 @@
-/* ===============================
-   GLOBAL VARIABLES
-================================ */
 const music = document.getElementById("bgMusic");
-const startBtn = document.getElementById("startBtn");
+const btn = document.getElementById("startBtn");
 
 const playlist = [
   "music/photograph.mp3",
@@ -10,88 +7,59 @@ const playlist = [
   "music/until-i-found-you.mp3"
 ];
 
-let currentSong = 0;
-let musicStarted = false;
+let songIndex = 0;
+let started = false;
 
-/* ===============================
-   MUSIC CONTROLS
-================================ */
-function playMusic() {
-  if (!musicStarted) {
-    music.src = playlist[currentSong];
+btn.addEventListener("click", () => {
+  if (!started) {
+    music.src = playlist[songIndex];
     music.volume = 0;
     music.play();
-    fadeInMusic();
-    musicStarted = true;
-    startBtn.innerText = "Music Playing ❤️";
+    fadeIn();
+    btn.innerText = "Music Playing ❤️";
+    started = true;
   }
-}
+});
 
-function fadeInMusic() {
-  let vol = 0;
+music.addEventListener("ended", () => {
+  songIndex = (songIndex + 1) % playlist.length;
+  music.src = playlist[songIndex];
+  music.play();
+});
+
+function fadeIn() {
+  let v = 0;
   const fade = setInterval(() => {
-    if (vol < 0.4) {
-      vol += 0.02;
-      music.volume = vol;
+    if (v < 0.4) {
+      v += 0.02;
+      music.volume = v;
     } else {
       clearInterval(fade);
     }
   }, 150);
 }
 
-music.addEventListener("ended", () => {
-  currentSong = (currentSong + 1) % playlist.length;
-  music.src = playlist[currentSong];
-  music.play();
-});
-
-/* ===============================
-   BUTTON CLICK
-================================ */
-startBtn.addEventListener("click", playMusic);
-
-/* ===============================
-   SCROLL REVEAL ANIMATION
-================================ */
+/* Scroll reveal */
 const sections = document.querySelectorAll(".section");
-
-const revealOnScroll = () => {
-  const triggerBottom = window.innerHeight * 0.85;
-
-  sections.forEach(section => {
-    const boxTop = section.getBoundingClientRect().top;
-
-    if (boxTop < triggerBottom) {
-      section.classList.add("show");
+window.addEventListener("scroll", () => {
+  sections.forEach(sec => {
+    if (sec.getBoundingClientRect().top < window.innerHeight * 0.8) {
+      sec.classList.add("show");
     }
   });
-};
+});
 
-window.addEventListener("scroll", revealOnScroll);
-
-/* ===============================
-   HEARTS FLOATING EFFECT
-================================ */
-function createHeart() {
+/* Floating hearts */
+setInterval(() => {
   const heart = document.createElement("div");
-  heart.classList.add("heart");
-  heart.innerHTML = "❤️";
-
+  heart.className = "heart";
+  heart.innerText = "❤️";
   heart.style.left = Math.random() * 100 + "vw";
   heart.style.animationDuration = 3 + Math.random() * 3 + "s";
-
   document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}, 700);
 
-  setTimeout(() => {
-    heart.remove();
-  }, 6000);
-}
-
-setInterval(createHeart, 700);
-
-/* ===============================
-   SMOOTH PAGE LOAD
-================================ */
 window.addEventListener("load", () => {
   document.body.classList.add("loaded");
 });
