@@ -1,0 +1,77 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #0e0e0e;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* Hero */
+.hero {
+  height: 100vh;
+  background: linear-gradient(120deg, #ff5fa2, #6a5cff);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.subtitle {
+  margin: 15px 0;
+  font-size: 1.2rem;
+}
+
+#startBtn {
+  padding: 12px 30px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 25px;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+#startBtn:hover {
+  transform: scale(1.1);
+}
+
+/* Sections */
+.section {
+  padding: 80px 15%;
+  line-height: 1.8;
+}
+
+.section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  font-family: 'Playfair Display', serif;
+}
+
+.section p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.section.dark {
+  background: #111;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 30px;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
